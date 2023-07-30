@@ -2,6 +2,7 @@ use std::process::Command;
 use std::fs::File;
 use std::io::prelude::*;
 
+/* Global variable containing the state of the laptop lid */
 static LID_STATE: &'static str = "/proc/acpi/button/lid/LID0/state";
 
 fn get_brightness() -> i16 {

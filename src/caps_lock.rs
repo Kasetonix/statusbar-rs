@@ -4,7 +4,7 @@ use std::env;
 pub fn draw_icon() -> String {
     /* Calculated at compile time! */
     const HOME: &'static str = env!("HOME");
-    let sb_path: String = format!("{HOME}/.scripts/statusbar-rs");
+    let sb_path: String = format!("{HOME}/.statusbar-rs");
     let capsl_path: String = format!("{sb_path}/src/capsl.sh");
 
     let output = Command::new(capsl_path).output().expect("`capsl` couldn't be run.");
