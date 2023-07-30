@@ -1,0 +1,3 @@
+# ignoring the built/debug files and a Cargo lock file
+target
+Cargo.lock
