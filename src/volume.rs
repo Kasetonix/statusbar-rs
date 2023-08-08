@@ -1,14 +1,22 @@
 use std::process::Command;
 
+/* Returns the volume in percent */
 fn get_volume() -> i8 {
     let output = Command::new("pamixer").arg("--get-volume").output().expect("pamixer couldn't be run.");
-    let mut volume = String::from_utf8(output.stdout).expect("Couldn't capture the pamixer output."); 
-    volume = volume.trim().to_string();
+    let volume = String::from_utf8(output.stdout).expect("Couldn't capture the pamixer output."); 
+    let volume = volume.trim().to_string();
+    let mut volume = volume.parse::<i16>().unwrap();
 
-    /* Return the result parsed to an i8 */
-    volume.parse::<i8>().unwrap()
+    /* Returns 100% if set above 100% */
+    if volume > 100 {
+        volume = 100
+    }
+
+    /* returning an i8 value  */
+    volume.try_into().unwrap()
 }
 
+/* Draws the volume bar */
 pub fn draw_bar() -> String {
     /* dividing the volume (in percent) by ten to
      * get the number of full bits in a bar */
