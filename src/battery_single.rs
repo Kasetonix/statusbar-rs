@@ -52,6 +52,8 @@ fn draw_status() -> &'static str {
     
     if bat_status == "Full" {
         return "";                         /* Full */
+    } else if bat_status == "Not charging" && percentage >= 90 {
+        return "";                         /* "Full" */
     } else if bat_status == "Charging" {
         if percentage >= 99 { return ""; } /* Charging and 'Full' */
         else                { return ""; } /* Charging            */
