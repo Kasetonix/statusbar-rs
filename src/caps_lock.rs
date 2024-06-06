@@ -2,7 +2,7 @@ use std::process::Command;
 use std::env;
 
 pub fn draw_icon() -> String {
-    /* Calculated at compile time! */
+    /* Evaluated at compile time! */
     const HOME: &'static str = env!("HOME");
     let sb_path: String = format!("{HOME}/.statusbar-rs");
     let capsl_path: String = format!("{sb_path}/src/capsl.sh");

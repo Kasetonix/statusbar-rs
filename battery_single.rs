@@ -29,7 +29,7 @@ fn get_status() -> String {
 }
 
 fn draw_charge() -> &'static str {
-    let percentage: i8 = get_percentage();
+    let percentage: i8 = get_battery_percentage();
 
     let level: i8 = percentage / 20;
     match level {
