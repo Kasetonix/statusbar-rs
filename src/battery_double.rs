@@ -53,6 +53,7 @@ fn draw_charge() -> &'static str {
 
     let level: i8 = percentage / 20;
     match level {
+        5 => return " ", /* = 100% */
         4 => return " ", /* >= 80% */
         3 => return " ", /* >= 60% */
         2 => return " ", /* >= 40% */
