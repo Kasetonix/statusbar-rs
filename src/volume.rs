@@ -1,5 +1,17 @@
 use std::process::Command;
 
+fn is_muted() -> bool {
+    let output = Command::new("pamixer").arg("--get-mute").output().expect("pamixer couldn't be run");
+    let status = String::from_utf8(output.stdout).expect("Couldn't capture the pamixer output."); 
+    let status = status.trim().to_string(); 
+
+    if status == "true" {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /* Returns the volume in percent */
 fn get_volume() -> i8 {
     let output = Command::new("pamixer").arg("--get-volume").output().expect("pamixer couldn't be run.");
@@ -22,7 +34,13 @@ pub fn draw_bar() -> String {
      * get the number of full bits in a bar */
     let level = get_volume() / 10;
     /* Prefix the bar with a speaker icon */
-    let mut bar = String::from(" ");
+    let mut bar: String;
+    if !is_muted() {
+        bar = String::from(" ");
+    } else {
+        bar = String::from(" ");
+    }
+
     let mut iterator: i8 = 0;
 
     /* Adding the full bits to the bar */
