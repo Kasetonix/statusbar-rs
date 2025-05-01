@@ -60,7 +60,7 @@ fn draw_status() -> &'static str {
     }
 
     /* Return a fallback value */
-    "~"
+    "—"
 }
 
 pub fn draw_icon() -> String {
